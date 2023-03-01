@@ -15,8 +15,8 @@ export default function AboutForms() {
         const [profile, setProfile] = useState('');
         const [mood, setMood] = useState('😊');
         const [theme, setTheme] = useState('');
-        const [hasTasks, setHasTasks] = useState(true);
-        const [hasBlockers, setHasBlockers] = useState(true);
+        const [hasTasks, setHasTasks] = useState(false);
+        const [hasBlockers, setHasBlockers] = useState(false);
 
         const API = process.env.REACT_APP_API_URL;
 
@@ -30,12 +30,10 @@ export default function AboutForms() {
                 'profile': profile,
                 'mood': '😊',
                 'theme': theme,
-                'has_tasks': false,
-                'has_blockers': false
+                'has_tasks': hasTasks,
+                'has_blockers': hasBlockers
 
             };
-
-            console.log(newUser)
 
             const addUser = (newUser) => {
               axios
@@ -60,25 +58,43 @@ export default function AboutForms() {
                 </label>
                 <label>
                     Gender:
-                    <input type="text" value={gender} onChange={(event) => setGender(event.target.value)} />
+                    <input type="text" style={{width: '15vw'}} value={gender} onChange={(event) => setGender(event.target.value)} />
                 </label>
                 <label>
                     About you:
-                    <input type="text" value={about} onChange={(event) => setAbout(event.target.value)} />
+                    <textarea value={about} style={{width: '45vw'}}  onChange={(event) => setAbout(event.target.value)} />
                 </label>
                 <label>
                     Your Profile Picture:
-                    <input type="text" value={profile} onChange={(event) => setProfile(event.target.value)} />
+                    <input type="text" style={{width: '65vw'}}  value={profile} onChange={(event) => setProfile(event.target.value)} />
                 </label>
                 <label>
                     Favorite Color:
-                    <select value={theme} onChange={(event) => setTheme(event.target.value)}>
-                        <option value="primary">Primary</option>
+                    <select className="form-select" value={theme} onChange={(event) => setTheme(event.target.value)}>
+                        <option value="primary">-----</option>
+                        <option value="primary">Blue</option>
+                        <option value="danger">Red</option>
                         <option value="secondary">Light Gray</option>
-                        <option value="warning">Red</option>
+                        <option value="warning">Yellow</option>
+                        <option value="success">Green</option>
+                        <option value="info">Cyan</option>
+                        <option value="light">White</option>
+                        <option value="black">Black</option>
                     </select>
                 </label>
-                <button type="submit">Add User</button>
+                <div className="form-check">
+                <label className="form-check-label">
+                    Goals:
+                    <input type="checkbox" className="form-check-input" value={hasTasks} onChange={(event) =>{ setHasTasks(!hasTasks);}}></input>
+                </label>
+                </div>
+                <div className="form-check">
+                <label className="form-check-label">
+                    Blockers:
+                    <input type="checkbox" className="form-check-input" value={hasBlockers} onChange={(event) =>{ setHasBlockers(!hasBlockers);}}></input>
+                </label>
+                </div>
+                <button className="btn btn-dark" type="submit">Add User</button>
             </form>
         );
     }
