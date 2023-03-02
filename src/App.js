@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import User from "./components/user";
 
-import TableList from "./components/table";
 import NavBar from "./components/navbar";
+import TableList from "./components/table";
 import Hero from "./components/hero";
 import AboutForms from "./components/aboutforms";
+import Footer from "./components/footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./override.css";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/new" element={<AboutForms />} />
         </Routes>
       </Router>
+      <Footer />
     </>
   );
 }
